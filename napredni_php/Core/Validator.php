@@ -151,6 +151,16 @@ class Validator
         }
     }
 
+    private function date($userInput, $field)
+    {
+        $date = strtotime($userInput);
+        if(!$date){
+            $this->addError($field, "Polje $field mora biti ispravan datum");
+        } else {
+            $this->data[$field] = date('Y-m-d', $date);
+        }
+    }
+
     private function clanskiBroj($userInput, $field)
     {
         if(!preg_match('/^(CLAN\d{5})$/', $userInput)){

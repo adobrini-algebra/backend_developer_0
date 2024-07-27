@@ -71,7 +71,12 @@ class Database {
         return $data;
     }
 
-    public function lastId()
+    public function connection(): PDO
+    {
+        return $this->pdo;
+    }
+
+    public function lastId(): string|false
     {
         return $this->pdo->lastInsertId();
     }

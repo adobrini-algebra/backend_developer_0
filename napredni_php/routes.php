@@ -2,6 +2,7 @@
 
 return [
     '/'                 => 'Controllers/home.php',
+    '/dashboard'        => 'Controllers/dashboard/index.php',
 
     '/members'          => 'Controllers/members/index.php',
     '/members/show'     => 'Controllers/members/show.php',
@@ -26,4 +27,13 @@ return [
     '/movies/edit'      => 'Controllers/movies/edit.php',
     '/movies/update'    => 'Controllers/movies/update.php',
     '/movies/destroy'   => 'Controllers/movies/destroy.php',
+
+    '/rentals'           => 'Controllers/rentals/index.php',
+    '/rentals/show'      => 'Controllers/rentals/show.php',
+    '/rentals/create'    => 'Controllers/rentals/create.php',
+    '/rentals/store'     => 'Controllers/rentals/store.php',
+    '/rentals/edit'      => 'Controllers/rentals/edit.php',
+    '/rentals/update'    => 'Controllers/rentals/update.php',
+    '/rentals/destroy'   => 'Controllers/rentals/destroy.php',
+    '/rentals/return'    => 'Controllers/rentals/return.php',
 ];

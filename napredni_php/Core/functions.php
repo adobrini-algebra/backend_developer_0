@@ -39,6 +39,12 @@ function goBack(): void
     exit();
 }
 
+function formatPrice($price)
+{
+    $formatted = $price < 0 ? number_format(0, 2) : number_format($price, 2);
+    return "$formatted &euro;";
+}
+
 //TODO: move to a Helper calss next 3 functions
 function isCurrent(string $link): bool
 {
