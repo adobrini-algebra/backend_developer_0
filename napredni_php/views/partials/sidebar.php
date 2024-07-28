@@ -1,4 +1,4 @@
-<aside class="d-flex flex-column p-3 text-bg-dark vh-100-min" style="width: 280px;">
+<aside class="d-flex flex-column p-3 text-bg-dark vh-100-min" style="width: 220px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span class="fs-4">Videoteka Admin</span>
     </a>

@@ -16,3 +16,10 @@
         
         <div class="content d-flex flex-column flex-grow-1">
             <?php include_once 'nav.php' ?>
+
+            <?php if (!empty($message)): ?>
+              <div class="alert alert-<?= $message['type'] ?> alert-dismissible fade show" role="alert">
+                  <?= $message['message'] ?>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php endif; ?>

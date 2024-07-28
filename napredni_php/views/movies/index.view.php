@@ -10,13 +10,6 @@
 
     <hr>
 
-    <?php if (!empty($message)): ?>
-        <div class="alert alert-<?= $message['type'] ?> alert-dismissible fade show" role="alert">
-            <?= $message['message'] ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php endif; ?>
-
     <table class="table table-striped">
         <thead>
             <tr>
@@ -35,14 +28,14 @@
                     <td><?= $movie['id'] ?></td>
                     <td><?= $movie['naslov'] ?></td>
                     <td><?php foreach ($movie['formats'] as $formatId => $format): ?>
-                        <span class="badge text-bg-light float-start" role="button" data-bs-toggle="modal" data-bs-target="#rentalCreateModal"
+                        <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#rentalCreateModal"
                                 data-bs-format-id="<?= $formatId ?>"
                                 data-bs-format-name="<?= $format['tip'] ?>"
                                 data-bs-movie-id="<?= $movie['id'] ?>"
                                 data-bs-movie-title="<?= $movie['naslov'] ?>">
                             <i class="bi bi-<?= $format['icon'] ?> me-1"></i>
                             <?= $format['tip'] ?> (<?= $format['kolicina'] ?>)
-                        </span>
+                        </button>
                     <?php endforeach ?></td>
                     <td><?= $movie['godina'] ?></td>
                     <td><?= $movie['zanr'] ?></td>

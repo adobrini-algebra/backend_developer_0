@@ -20,6 +20,10 @@
                 <input type="text" class="form-control" id="zanr" name="zanr" value="<?= $genre['ime'] ?>" disabled>
             </div>
         </div>
+        <div class="col-12 d-flex gap-2">
+            <a href="/genres" class="btn btn-primary mb-3">Povratak</a>
+            <a href="/genres/edit?id=<?= $genre['id'] ?>" class="btn btn-info mb-3">Uredi</a>
+        </div>
     </form>
 </main>
 

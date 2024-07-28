@@ -2,6 +2,7 @@
 
 use Core\Database;
 use Core\Validator;
+use Core\Session;
 
 if (!isset($_POST['id'] ) || !isset($_POST['_method']) || $_POST['_method'] !== 'PATCH') {
     abort();
@@ -20,12 +21,18 @@ $rules = [
 
 $form = new Validator($rules, $postData);
 if ($form->notValid()){
-    dd($form->errors());
+    Session::flash('errors', $form->errors());
+    goBack();
 }
 
 $data = $form->getData();
 
 $sql = "UPDATE zanrovi SET ime = ? WHERE id = ?";
 $db->query($sql, [$data['ime'], $genre['id']]);
+
+Session::flash('message', [
+    'type' => 'success',
+    'message' => "Uspjesno uredjen zanr {$data['ime']}."
+]);
 
 redirect('genres');

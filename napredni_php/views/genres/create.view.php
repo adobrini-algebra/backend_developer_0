@@ -9,7 +9,8 @@
             <label for="zanr" class="mt-1">Naziv Zanra</label>
         </div>
         <div class="col-6">
-            <input type="text" class="form-control" id="zanr" name="zanr">
+            <input type="text" class="form-control <?= isset($errors['ime']) ? 'is-invalid' : '' ?>" id="zanr" name="zanr">
+            <span class="invalid-feedback"><?= $errors['ime'] ?? '' ?></span>
         </div>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3">Spremi</button>
