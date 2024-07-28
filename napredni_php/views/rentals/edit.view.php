@@ -36,43 +36,43 @@
         <input type="hidden" name="kid" value="<?= $rental['kopija_id'] ?>">
         <div class="col-md-6">
             <label for="movie" class="form-label ps-1">Film</label>
-            <select class="form-select <?= isset($errors['movie']) ? 'is-invalid' : '' ?>" name="movie" id="movie">
+            <select class="form-select <?= validationClass($errors, 'movie') ?>" name="movie" id="movie">
                 <option selected>Odaberite Film</option>
                 <?php foreach ($movies as $movie): ?>
                     <option value="<?= $movie['id'] ?>" <?= $movie['id'] === $rental['film_id'] ? 'selected' : '' ?>><?= $movie['godina'] ?> - <?= $movie['naslov'] ?></option>
                 <?php endforeach ?>
             </select>
-            <span class="invalid-feedback"><?= $errors['movie'] ?? '' ?></span>
+            <?= validationFeedback($errors, 'movie') ?>
         </div>
         <div class="col-md-2">
             <label for="format" class="form-label ps-1">Medij</label>
-            <select class="form-select <?= isset($errors['format']) ? 'is-invalid' : '' ?>" name="format" id="format">
+            <select class="form-select <?= validationClass($errors, 'format') ?>" name="format" id="format">
                 <option selected>Odaberite Medij</option>
                 <?php foreach ($formats as $format): ?>
                     <option value="<?= $format['id'] ?>" <?= $format['id'] === $rental['medij_id'] ? 'selected' : '' ?>><?= $format['tip'] ?></option>
                 <?php endforeach ?>
             </select>
-            <span class="invalid-feedback"><?= $errors['format'] ?? '' ?></span>
+            <?= validationFeedback($errors, 'format') ?>
         </div>
         <div class="col-md-4">
             <label for="member" class="form-label ps-1">Clan</label>
-            <select class="form-select <?= isset($errors['member']) ? 'is-invalid' : '' ?>" name="member" id="member">
+            <select class="form-select <?= validationClass($errors, 'member') ?>" name="member" id="member">
                 <option selected>Odaberite Clana</option>
                 <?php foreach ($members as $member): ?>
                     <option value="<?= $member['id'] ?>" <?= $member['id'] === $rental['clan_id'] ? 'selected' : '' ?>><?= $member['clanski_broj'] ?> - <?= $member['ime'] ?> <?= $member['prezime'] ?></option>
                 <?php endforeach ?>
             </select>
-            <span class="invalid-feedback"><?= $errors['member'] ?? '' ?></span>
+            <?= validationFeedback($errors, 'member') ?>
         </div>
         <div class="col-md-6">
             <label for="datum_posudbe" class="form-label">Datum Posudbe</label>
-            <input type="text" class="form-control <?= isset($errors['datum_posudbe']) ? 'is-invalid' : '' ?>" id="datum_posudbe" name="datum_posudbe" value="<?= $rental['datum_posudbe'] ?>">
-            <span class="invalid-feedback"><?= $errors['datum_posudbe'] ?? '' ?></span>
+            <input type="text" class="form-control <?= validationClass($errors, 'datum_posudbe') ?>" id="datum_posudbe" name="datum_posudbe" value="<?= $rental['datum_posudbe'] ?>">
+            <?= validationFeedback($errors, 'datum_posudbe') ?>
         </div>
         <div class="col-md-6">
             <label for="datum_povrata" class="form-label">Datum Povrata</label>
-            <input type="text" class="form-control <?= isset($errors['datum_povrata']) ? 'is-invalid' : '' ?>" id="datum_povrata" name="datum_povrata" value="<?= $rental['datum_povrata'] ?>">
-            <span class="invalid-feedback"><?= $errors['datum_povrata'] ?? '' ?></span>
+            <input type="text" class="form-control <?= validationClass($errors, 'datum_povrata') ?>" id="datum_povrata" name="datum_povrata" value="<?= $rental['datum_povrata'] ?>">
+            <?= validationFeedback($errors, 'datum_povrata') ?>
         </div>
         <div class="col-12 d-flex justify-content-between">
             <a href="/rentals" class="btn btn-primary mb-3">Povratak</a>

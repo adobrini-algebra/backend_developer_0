@@ -45,6 +45,20 @@ function formatPrice($price)
     return "$formatted &euro;";
 }
 
+function validationClass($errors, $field): ?string
+{
+    if (empty($errors)) {
+        return null;
+    }
+
+    return isset($errors[$field]) ? 'is-invalid' : 'is-valid';
+}
+
+function validationFeedback($errors, $field): ?string
+{
+    return isset($errors[$field]) ? "<span class='invalid-feedback'>{$errors[$field]}</span>" : null;
+}
+
 //TODO: move to a Helper calss next 3 functions
 function isCurrent(string $link): bool
 {

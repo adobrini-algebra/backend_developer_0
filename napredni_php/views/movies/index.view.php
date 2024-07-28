@@ -61,13 +61,13 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="member" class="form-label ps-1">Clan</label>
-                    <select class="form-select <?= isset($errors['member']) ? 'is-invalid' : '' ?>" name="member" id="member">
+                    <select class="form-select <?= validationClass($errors, 'member') ?>" name="member" id="member">
                         <option selected>Odaberite Clana</option>
                         <?php foreach ($members as $member): ?>
                             <option value="<?= $member['id'] ?>"><?= $member['clanski_broj'] ?> - <?= $member['ime'] ?> <?= $member['prezime'] ?></option>
                         <?php endforeach ?>
                     </select>
-                    <span class="invalid-feedback"><?= $errors['member'] ?? '' ?></span>
+                    <?= validationFeedback($errors, 'member') ?>
                 </div>
                 <div class="mb-3">
                     <label for="movie" class="col-form-label">Film</label>

@@ -10,16 +10,12 @@ if (!isset($_POST['id'] ) || !isset($_POST['_method']) || $_POST['_method'] !== 
 
 $db = Database::get();
 $genre = $db->query('SELECT * FROM zanrovi WHERE id = ?', [$_POST['id']])->findOrFail();
-    
-$postData = [
-    "ime" => $_POST['zanr'],
-];
 
 $rules = [
     'ime' => ['required', 'string', 'max:100', 'unique:zanrovi'],
 ];
 
-$form = new Validator($rules, $postData);
+$form = new Validator($rules, $_POST);
 if ($form->notValid()){
     Session::flash('errors', $form->errors());
     goBack();

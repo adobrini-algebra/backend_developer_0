@@ -5,21 +5,6 @@ use Core\Session;
 
 $db = Database::get();
 
-// $sql = "SELECT
-//             f.id, f.naslov, f.godina,
-//             z.ime AS zanr,
-//             c.tip_filma,
-//             GROUP_CONCAT(DISTINCT m.tip,'-', m.id) AS medij
-//         FROM
-//             kopija k
-//             JOIN filmovi f ON f.id = k.film_id
-//             JOIN zanrovi z ON z.id = f.zanr_id
-//             JOIN mediji m ON m.id = k.medij_id
-//             JOIN cjenik c ON c.id = f.cjenik_id
-//         WHERE k.dostupan = 1
-//         GROUP BY f.id
-//         ORDER BY f.id;";
-
 function icon($medij)
 {
     return match ($medij) {
@@ -68,7 +53,6 @@ foreach ($results as $key => $movie) {
 $members = $db->query("SELECT * from clanovi ORDER BY id")->all();
 $errors = Session::all('errors');
 $message = Session::all('message');
-
 Session::unflash();
 
 $pageTitle = 'Filmovi';

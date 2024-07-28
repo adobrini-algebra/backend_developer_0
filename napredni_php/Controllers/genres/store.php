@@ -8,15 +8,11 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
     dd('Unsupported method!');
 }
 
-$postData = [
-    'ime' => $_POST['zanr'] ?? null
-];
-
 $rules = [
     'ime' => ['required', 'string', 'max:100', 'unique:zanrovi'],
 ];
 
-$form = new Validator($rules, $postData);
+$form = new Validator($rules, $_POST);
 if ($form->notValid()){
     Session::flash('errors', $form->errors());
     goBack();

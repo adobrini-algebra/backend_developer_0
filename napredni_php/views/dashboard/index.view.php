@@ -55,7 +55,7 @@
                     </td>
                     <td>
                         <form action="/rentals/return" method="POST" class="d-inline">
-                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_method" value="PATCH">
                             <input type="hidden" name="pid" value="<?= $rental['id'] ?>">
                             <input type="hidden" name="kid" value="<?= $rental['kopija_id'] ?>">
                             <button type="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Oznaci vraceno"><i class="bi bi-arrow-counterclockwise"></i></button>

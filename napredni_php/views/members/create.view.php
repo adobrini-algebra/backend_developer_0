@@ -10,28 +10,28 @@
     <form class="row g-3 mt-3" action="/members/store" method="POST">
         <div class="col-md-6">
             <label for="ime" class="form-label">Ime</label>
-            <input type="text" class="form-control <?= isset($errors['ime']) ? 'is-invalid' : '' ?>" id="ime" name="ime" placeholder="Ime" required>
-            <span class="invalid-feedback"><?= $errors['ime'] ?? '' ?></span>
+            <input type="text" class="form-control <?= validationClass($errors, 'ime') ?>" id="ime" name="ime" placeholder="Ime" required>
+            <?= validationFeedback($errors, 'ime') ?>
         </div>
         <div class="col-md-6">
             <label for="prezime" class="form-label">Prezime</label>
-            <input type="text" class="form-control <?= isset($errors['prezime']) ? 'is-invalid' : '' ?>" id="prezime" name="prezime" placeholder="Prezime" required>
-            <span class="invalid-feedback"><?= $errors['prezime'] ?? '' ?></span>
+            <input type="text" class="form-control <?= validationClass($errors, 'prezime') ?>" id="prezime" name="prezime" placeholder="Prezime" required>
+            <?= validationFeedback($errors, 'prezime') ?>
         </div>
         <div class="col-md-6">
             <label for="adresa" class="form-label">Adresa</label>
-            <input type="text" class="form-control <?= isset($errors['adresa']) ? 'is-invalid' : '' ?>" id="adresa" name="adresa" placeholder="Adresa">
-            <span class="invalid-feedback"><?= $errors['adresa'] ?? '' ?></span>
+            <input type="text" class="form-control <?= validationClass($errors, 'adresa') ?>" id="adresa" name="adresa" placeholder="Adresa">
+            <?= validationFeedback($errors, 'adresa') ?>
         </div>
         <div class="col-md-6">
             <label for="telefon" class="form-label">Telefon</label>
-            <input type="text" class="form-control <?= isset($errors['telefon']) ? 'is-invalid' : '' ?>" id="telefon" name="telefon" placeholder="Telefon">
-            <span class="invalid-feedback"><?= $errors['telefon'] ?? '' ?></span>
+            <input type="text" class="form-control <?= validationClass($errors, 'telefon') ?>" id="telefon" name="telefon" placeholder="Telefon">
+            <?= validationFeedback($errors, 'telefon') ?>
         </div>
         <div class="col-md-12">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control <?= isset($errors['email']) ? 'is-invalid' : '' ?>" id="email" name="email" placeholder="Email" required>
-            <span class="invalid-feedback"><?= $errors['email'] ?? '' ?></span>
+            <input type="email" class="form-control <?= validationClass($errors, 'email') ?>" id="email" name="email" placeholder="Email" required>
+            <?= validationFeedback($errors, 'email') ?>
         </div>
         <div class="col-12 d-flex justify-content-between">
             <a href="/members" class="btn btn-primary mb-3">Povratak</a>

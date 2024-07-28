@@ -3,7 +3,7 @@
 use Core\Database;
 use Core\Session;
 
-if ((!isset($_POST['pid']) && !isset($_POST['kid'])) || !isset($_POST['_method']) || $_POST['_method'] !== 'DELETE') {
+if ((!isset($_POST['pid']) && !isset($_POST['kid'])) || !isset($_POST['_method']) || $_POST['_method'] !== 'PATCH') {
     abort();
 }
 
@@ -25,7 +25,7 @@ $db->connection()->commit();
 
 Session::flash('message', [
     'type' => 'success',
-    'message' => "Uspjesno vracena posudba {$rental['id']}."
+    'message' => "Uspjesno vracena posudba {$rental['id']}"
 ]);
 
 goBack();
