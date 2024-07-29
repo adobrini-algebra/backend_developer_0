@@ -437,5 +437,8 @@ INSERT INTO `posudba_kopija` (`posudba_id`, `kopija_id`) VALUES
 (9, 90),
 (10, 57);
 
-ALTER TABLE `videoteka`.`clanovi`
-CHANGE `telefon` `telefon` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+ALTER TABLE `videoteka`.`clanovi` CHANGE `telefon` `telefon` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+ALTER TABLE `kopija` DROP FOREIGN KEY `kopija_ibfk_1`;
+
+ALTER TABLE `kopija` ADD CONSTRAINT `kopija_ibfk_1` FOREIGN KEY (`film_id`) REFERENCES `filmovi` (`id`) ON DELETE CASCADE;
