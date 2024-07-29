@@ -7,13 +7,20 @@ use Core\Session;
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
     dd('Unsupported method!');
 }
-    
+
 $rules = [
     'naslov' => ['required', 'string', 'max:100', 'min:2'],
     'godina' => ['required', 'numeric','max:4'],
     'zanr' => ['required', 'numeric', 'exists:zanrovi,id'],
     'cijena' => ['required', 'numeric', 'exists:cjenik,id'],
 ];
+
+$db = Database::get();
+$formats = $db->query("SELECT * FROM mediji ORDER BY id")->all();
+
+foreach ($formats as $format) {
+    $rules[$format['tip']] = ['numeric', 'gt:0', 'lt:20'];
+}
 
 $form = new Validator($rules, $_POST);
 if ($form->notValid()){
@@ -23,16 +30,58 @@ if ($form->notValid()){
 
 $data = $form->getData();
 
-$db = Database::get();
+try {
+    $db->connection()->beginTransaction();
 
-$sql = "INSERT INTO filmovi (naslov, godina, zanr_id, cjenik_id) VALUES (:naslov, :godina, :zanr, :cijena)";
+    $sql = "INSERT INTO filmovi (naslov, godina, zanr_id, cjenik_id) VALUES (:naslov, :godina, :zanr, :cijena)";
+    $db->query($sql, [
+        'naslov' => $data['naslov'],
+        'godina' => $data['godina'],
+        'zanr' => $data['zanr'],
+        'cijena' => $data['cijena']
+    ]);
 
-$db->query($sql, [
-    'naslov' => $data['naslov'],
-    'godina' => $data['godina'],
-    'zanr' => $data['zanr'],
-    'cijena' => $data['cijena']
-]);
+    $filmId = $db->lastId();
+
+    if (!$filmId) {
+        throw new Exception("Failed to retrieve last inserted filmId.");
+    }
+
+    $values = [];
+    $params = [];
+
+    foreach ($formats as $format) {
+        $medium = $format['tip'];
+
+        if (!isset($data[$medium])) {
+            continue;
+        }
+
+        $barcode = explode(' ', $data['naslov']);
+        $barcode = mb_strtoupper(sprintf('%s%s-%s-%s',
+            $barcode[0],
+            count($barcode) > 1 ? end($barcode) : '',
+            $data['godina'],
+            str_replace('-', '', $medium)
+        ));
+
+        for ($i=0; $i < $data[$medium]; $i++) {
+            $values[] = "(?, ?, ?, ?)";
+            $params[] = $barcode;
+            $params[] = 1;
+            $params[] = $filmId;
+            $params[] = $format['id'];
+        }
+    }
+
+    $sql = "INSERT INTO kopija (barcode, dostupan, film_id, medij_id) VALUES " . implode(', ', $values);
+    $db->query($sql, $params);
+
+    $db->connection()->commit();
+} catch (\Exception $e) {
+    $db->connection()->rollBack();
+    throw $e;
+}
 
 Session::flash('message', [
     'type' => 'success',

@@ -14,15 +14,15 @@ use Core\Validator;
     <form class="row g-3 mt-3" action="/movies/store" method="POST">
         <div class="col-md-6">
             <label for="naslov" class="form-label">Naslov</label>
-            <input type="text" class="form-control <?= validationClass($errors, 'naslov') ?>" id="naslov" name="naslov" placeholder="Naslov" required>
+            <input type="text" class="form-control <?= validationClass($errors, 'naslov') ?>" id="naslov" name="naslov" placeholder="Naslov">
             <?= validationFeedback($errors, 'naslov') ?>
         </div>
         <div class="col-md-6">
             <label for="godina" class="form-label">Godina</label>
-            <input type="text" class="form-control <?= validationClass($errors, 'godina') ?>" id="godina" name="godina" placeholder="Godina" required>
+            <input type="text" class="form-control <?= validationClass($errors, 'godina') ?>" id="godina" name="godina" placeholder="Godina">
             <?= validationFeedback($errors, 'godina') ?>
         </div>
-        <div class="col">
+        <div class="col-md-6">
             <label for="zanr" class="form-label ps-1">Žanr</label>
             <select class="form-select <?= validationClass($errors, 'zanr') ?>" aria-label="Default select example" name="zanr">
                 <option selected>Odaberite zanr</option>
@@ -32,7 +32,7 @@ use Core\Validator;
             </select>
             <?= validationFeedback($errors, 'zanr') ?>
         </div>
-        <div class="col">
+        <div class="col-md-6">
             <label for="cijena" class="form-label ps-1">Cjenik</label>
             <select class="form-select <?= validationClass($errors, 'cijena') ?>" aria-label="Default select example" name="cijena">
                 <option selected>Odaberite cijenu</option>
@@ -42,6 +42,13 @@ use Core\Validator;
             </select>
             <?= validationFeedback($errors, 'cijena') ?>
         </div>
+        <?php foreach ($formats as $format): ?>
+            <div class="col-md-<?= 12 / count($formats) ?>">
+                <label for="<?= $format['tip'] ?>" class="form-label"><?= $format['tip'] ?> kolicina</label>
+                <input type="number" class="form-control <?= validationClass($errors, $format['tip']) ?>" id="<?= $format['tip'] ?>" name="<?= $format['tip'] ?>" placeholder="<?= $format['tip'] ?> kolicina">
+                <?= validationFeedback($errors, $format['tip'] ) ?>
+            </div>
+        <?php endforeach ?>
         <div class="col-12 text-end">
             <button type="submit" class="btn btn-primary mb-3">Spremi</button>
         </div>

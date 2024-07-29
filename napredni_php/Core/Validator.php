@@ -42,8 +42,7 @@ class Validator
         foreach ($this->rules as $field => $rules) {
             $userInput = $this->form[$field] ?? '';
             $userInput = trim($userInput);
-            $userInput = empty($userInput) ? null : htmlspecialchars($userInput);// sprjecava XSS napad - cross site scripting
-
+            $userInput = $userInput === '' ? null : htmlspecialchars($userInput);// sprjecava XSS napad - cross site scripting
 
             if (!in_array('required', $rules) && is_null($userInput)) {
                 continue;
@@ -118,6 +117,20 @@ class Validator
     {
         if(!is_numeric($userInput)){
             $this->addError($field, "Polje $field mora biti brojcana vrijednost!");
+        }
+    }
+
+    private function gt($userInput, $field, $value)
+    {
+        if (intval($userInput) <= intval($value) ) {
+            $this->addError($field, "Polje $field mora biti brojcana vrijednost veca od $value!");
+        }
+    }
+
+    private function lt($userInput, $field, $value)
+    {
+        if (intval($userInput) > intval($value) ) {
+            $this->addError($field, "Polje $field mora biti brojcana vrijednost manja od $value!");
         }
     }
 

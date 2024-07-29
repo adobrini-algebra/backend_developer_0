@@ -44,7 +44,7 @@ class Database {
                 throw new ResourceInUseException();
             }
             //TODO: return 500 error page with appropriate message
-            die('Something went wrong, please try again ' . $e->getMessage());
+            throw $e;
         }
        
         return $this;

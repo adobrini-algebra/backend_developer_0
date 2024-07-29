@@ -45,9 +45,15 @@ try {
         'clan' => $data['member']
     ]);
 
+    $rentalId = $db->lastId();
+
+    if (!$rentalId) {
+        throw new Exception("Failed to retrieve last inserted rentalId.");
+    }
+
     $copySql = "INSERT INTO posudba_kopija (posudba_id, kopija_id) VALUES (:posudba, :kopija)";
     $db->query($copySql, [
-        'posudba' => $db->lastId(),
+        'posudba' => $rentalId,
         'kopija' => $copy['id']
     ]);
 
@@ -57,7 +63,6 @@ try {
 } catch (\Exception $e) {
     $db->connection()->rollBack();
     throw $e;
-
 }
 
 Session::flash('message', [
