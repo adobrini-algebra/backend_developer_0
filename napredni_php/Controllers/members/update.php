@@ -8,6 +8,9 @@ if (!isset($_POST['id'] ) || !isset($_POST['_method']) || $_POST['_method'] !== 
     abort();
 }
 
+$db = Database::get();
+$member = $db->query("SELECT * from clanovi WHERE id = :id", ['id' => $_POST['id']])->findOrFail();
+
 $rules = [
     'id' => ['required', 'numeric'],
     'ime' => ['required', 'string', 'max:50', 'min:2'],
@@ -17,10 +20,6 @@ $rules = [
     'email' => ['required', 'email','max:50', 'unique:clanovi,' . $_POST['id']],
     'clanski_broj' => ['required', 'string', 'max:14', 'clanskiBroj', 'unique:clanovi,' . $_POST['id']],
 ];
-
-$db = Database::get();
-$sql = 'SELECT * from clanovi WHERE id = :id';
-$member = $db->query($sql, ['id' => $_POST['id']])->findOrFail();
 
 $form = new Validator($rules, $_POST);
 if ($form->notValid()){
@@ -39,7 +38,7 @@ $db->query($sql, [
     'telefon' => $data['telefon'],
     'email' => $data['email'],
     'clanski_broj' => $data['clanski_broj'],
-    'id' => $_POST['id']
+    'id' => $member['id']
 ]);
 
 $pageTitle = "Edit Member";

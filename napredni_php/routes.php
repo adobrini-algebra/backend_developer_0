@@ -36,4 +36,12 @@ return [
     '/rentals/update'    => 'Controllers/rentals/update.php',
     '/rentals/destroy'   => 'Controllers/rentals/destroy.php',
     '/rentals/return'    => 'Controllers/rentals/return.php',
+    
+    '/prices'           => 'Controllers/prices/index.php',
+    '/prices/show'      => 'Controllers/prices/show.php',
+    '/prices/create'    => 'Controllers/prices/create.php',
+    '/prices/store'     => 'Controllers/prices/store.php',
+    '/prices/edit'      => 'Controllers/prices/edit.php',
+    '/prices/update'    => 'Controllers/prices/update.php',
+    '/prices/destroy'   => 'Controllers/prices/destroy.php',
 ];

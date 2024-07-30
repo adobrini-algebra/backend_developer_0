@@ -122,14 +122,14 @@ class Validator
 
     private function gt($userInput, $field, $value)
     {
-        if (intval($userInput) <= intval($value) ) {
+        if (floatval($userInput) <= intval($value) ) {
             $this->addError($field, "Polje $field mora biti brojcana vrijednost veca od $value!");
         }
     }
 
     private function lt($userInput, $field, $value)
     {
-        if (intval($userInput) > intval($value) ) {
+        if (floatval($userInput) > intval($value) ) {
             $this->addError($field, "Polje $field mora biti brojcana vrijednost manja od $value!");
         }
     }
