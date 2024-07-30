@@ -1,8 +1,4 @@
-<?php
-
-use Core\Validator;
-
- include_once base_path('views/partials/header.php'); ?>
+<?php include_once base_path('views/partials/header.php'); ?>
 
 <main class="container my-3 d-flex flex-column flex-grow-1 vh-100">
     <div class="title flex-between">
@@ -49,7 +45,8 @@ use Core\Validator;
                 <?= validationFeedback($errors, $format['tip'] ) ?>
             </div>
         <?php endforeach ?>
-        <div class="col-12 text-end">
+        <div class="col-12 d-flex justify-content-between">
+            <a href="/movies" class="btn btn-primary mb-3">Povratak</a>
             <button type="submit" class="btn btn-primary mb-3">Spremi</button>
         </div>
     </form>

@@ -4,20 +4,22 @@ use Core\Database;
 use Core\Validator;
 use Core\Session;
 
-if($_SERVER['REQUEST_METHOD'] !== 'POST'){
-    dd('Unsupported method!');
+if (!isset($_POST['id'] ) || !isset($_POST['_method']) || $_POST['_method'] !== 'PATCH') {
+    abort();
 }
 
+$db = Database::get();
+$movie = $db->query("SELECT * from filmovi WHERE id = :id", ['id' => $_POST['id']])->findOrFail();
+
 $rules = [
+    'id' => ['required', 'numeric'],
     'naslov' => ['required', 'string', 'max:100', 'min:2'],
     'godina' => ['required', 'numeric','max:4'],
     'zanr' => ['required', 'numeric', 'exists:zanrovi,id'],
     'cijena' => ['required', 'numeric', 'exists:cjenik,id'],
 ];
 
-$db = Database::get();
 $formats = $db->query("SELECT * FROM mediji ORDER BY id")->all();
-
 foreach ($formats as $format) {
     $rules[$format['tip']] = ['numeric', 'gt:0', 'lt:20'];
 }
@@ -33,20 +35,16 @@ $data = $form->getData();
 try {
     $db->connection()->beginTransaction();
 
-    $sql = "INSERT INTO filmovi (naslov, godina, zanr_id, cjenik_id) VALUES (:naslov, :godina, :zanr, :cijena)";
+    $sql = "UPDATE filmovi SET naslov = :naslov, godina = :godina, zanr_id = :zanr, cjenik_id = :cijena WHERE id = :id";
     $db->query($sql, [
         'naslov' => $data['naslov'],
         'godina' => $data['godina'],
         'zanr' => $data['zanr'],
-        'cijena' => $data['cijena']
+        'cijena' => $data['cijena'],
+        'id' => $data['id']
     ]);
 
-    $filmId = $db->lastId();
-
-    if (!$filmId) {
-        throw new Exception("Failed to retrieve last inserted filmId.");
-    }
-
+    //TODO: move the following logic to a service for reuse in movies/create
     $values = [];
     $params = [];
 
@@ -69,7 +67,7 @@ try {
             $values[] = "(?, ?, ?, ?)";
             $params[] = $barcode;
             $params[] = 1;
-            $params[] = $filmId;
+            $params[] = $data['id'];
             $params[] = $format['id'];
         }
     }
@@ -87,7 +85,7 @@ try {
 
 Session::flash('message', [
     'type' => 'success',
-    'message' => "Uspjesno kreiran film {$data['naslov']}"
+    'message' => "Uspjesno uredjeni podaci o filmu {$data['naslov']}"
 ]);
 
 redirect('movies');

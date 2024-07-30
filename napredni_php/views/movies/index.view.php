@@ -27,9 +27,10 @@
                 <tr>
                     <td><?= $movie['id'] ?></td>
                     <td>
-                        <a href="/movies/show?<?= $movie['id'] ?>"><?= $movie['naslov'] ?></a>
+                        <a href="/movies/show?id=<?= $movie['id'] ?>"><?= $movie['naslov'] ?></a>
                     </td>
                     <td><?php foreach ($movie['formats'] as $formatId => $format): ?>
+                        <?php if ($format['kolicina'] === 0) continue  ?>
                         <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#rentalCreateModal"
                                 data-bs-format-id="<?= $formatId ?>"
                                 data-bs-format-name="<?= $format['tip'] ?>"
@@ -43,7 +44,7 @@
                     <td><?= $movie['zanr'] ?></td>
                     <td><?= $movie['tip_filma'] ?></td>
                     <td>
-                        <a href="/movies/edit?<?= $movie['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Film"><i class="bi bi-pencil"></i></a>
+                        <a href="/movies/edit?id=<?= $movie['id'] ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Uredi Film"><i class="bi bi-pencil"></i></a>
                         <form action="/movies/destroy" method="POST" class="d-inline">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="id" value="<?= $movie['id'] ?>">

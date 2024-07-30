@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Core\Database;
 use Core\Session;
 
@@ -23,16 +25,15 @@ $sql = "SELECT
             m.tip AS medij,
             m.id AS m_id,
             c.tip_filma,
-            COUNT(k.id) AS 'kolicina'
+            COUNT(CASE WHEN k.dostupan = 1 THEN 1 END) AS kolicina
         FROM
-            kopija k
-            JOIN filmovi f ON f.id = k.film_id
-            JOIN zanrovi z ON z.id = f.zanr_id
-            JOIN mediji m ON m.id = k.medij_id
+            filmovi f
+            LEFT JOIN kopija k ON f.id = k.film_id
+            LEFT JOIN zanrovi z ON z.id = f.zanr_id
+            LEFT JOIN mediji m ON m.id = k.medij_id
             JOIN cjenik c ON c.id = f.cjenik_id
-        WHERE k.dostupan = 1
         GROUP BY f.id, m.id
-        ORDER BY f.id;";
+        ORDER BY f.id";
 
 $results = $db->query($sql)->all();
 $movies = [];
