@@ -44,4 +44,12 @@ return [
     '/prices/edit'      => 'Controllers/prices/edit.php',
     '/prices/update'    => 'Controllers/prices/update.php',
     '/prices/destroy'   => 'Controllers/prices/destroy.php',
+    
+    '/formats'           => 'Controllers/formats/index.php',
+    '/formats/show'      => 'Controllers/formats/show.php',
+    '/formats/create'    => 'Controllers/formats/create.php',
+    '/formats/store'     => 'Controllers/formats/store.php',
+    '/formats/edit'      => 'Controllers/formats/edit.php',
+    '/formats/update'    => 'Controllers/formats/update.php',
+    '/formats/destroy'   => 'Controllers/formats/destroy.php',
 ];

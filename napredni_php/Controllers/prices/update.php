@@ -34,8 +34,6 @@ $db->query($sql, [
     'id' => $price['id']
 ]);
 
-$pageTitle = "Uredi cijenu";
-
 Session::flash('message', [
     'type' => 'success',
     'message' => "Uspjesno uredjena podaci o cijenai {$data['tip_filma']}"

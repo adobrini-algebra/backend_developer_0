@@ -41,8 +41,6 @@ $db->query($sql, [
     'id' => $member['id']
 ]);
 
-$pageTitle = "Edit Member";
-
 Session::flash('message', [
     'type' => 'success',
     'message' => "Uspjesno uredjeni podaci o clanu '{$data['ime']} {$data['prezime']}'."
