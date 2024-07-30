@@ -7,14 +7,15 @@
     <form class="row g-3 mt-3" action="/genres/update" method="POST">
         <input type="hidden" name="_method" value="PATCH">
         <input type="hidden" name="id" value="<?= $genre['id'] ?>">
-        <div class="col-auto">
+        <div class="col-md-2">
             <label for="zanr" class="mt-1">Naziv Zanra</label>
         </div>
-        <div class="col-6">
+        <div class="col-md-10">
             <input type="text" class="form-control <?= validationClass($errors, 'ime') ?>" id="ime" name="ime" value="<?= $genre['ime'] ?>">
             <?= validationFeedback($errors, 'ime') ?>
         </div>
-        <div class="col-auto">
+        <div class="col-md-12 mt-4 d-flex justify-content-between">
+            <a href="/genres" class="btn btn-primary mb-3">Povratak</a>
             <button type="submit" class="btn btn-primary mb-3">Spremi</button>
         </div>
     </form>
