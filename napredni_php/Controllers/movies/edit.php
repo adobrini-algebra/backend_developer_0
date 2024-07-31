@@ -15,12 +15,11 @@ $copiesSql = "SELECT
     k.*,
     pk.posudba_id,
     m.tip AS medij
-from
-    kopija k
+from kopija k
     JOIN mediji m ON m.id = k.medij_id
     LEFT JOIN posudba_kopija pk ON k.id = pk.kopija_id
-WHERE
-    film_id = :id";
+WHERE film_id = :id
+ORDER BY m.id";
 
 $copies = $db->query($copiesSql, ['id' => $movie['id']])->all();
 
