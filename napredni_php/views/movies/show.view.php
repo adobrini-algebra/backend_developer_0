@@ -67,7 +67,13 @@
                         <td><?= $copy['id'] ?></td>
                         <td><?= $copy['barcode'] ?></td>
                         <td><?= $copy['medij'] ?></td>
-                        <td><?= $copy['dostupan'] ? '<span class="badge text-bg-success">Dostupan</span>' : '<span class="badge text-bg-danger">Posudjen</span>' ?></td>
+                        <td>
+                            <?php if ($copy['dostupan'] === 1): ?>
+                                <span class="badge text-bg-success">Dostupan</span>
+                            <?php else: ?>
+                                <a href="/rentals/show?pid=<?= $copy['posudba_id'] ?>&kid=<?= $copy['id'] ?>"><span class='badge text-bg-danger' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Prikazi posudbu">Posudjen</span></a>
+                            <?php endif ?>
+                        </td>
                         <td>
                             <form action="/copies/destroy" method="POST" class="d-inline">
                                 <input type="hidden" name="_method" value="DELETE">

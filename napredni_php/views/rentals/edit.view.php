@@ -76,7 +76,7 @@
         </div>
         <div class="col-12 d-flex justify-content-between">
             <a href="/rentals" class="btn btn-primary mb-3">Povratak</a>
-            <button type="submit" class="btn btn-info mb-3">Uredi</button>
+            <button type="submit" class="btn btn-success mb-3">Spremi</button>
         </div>
     </form>
 </main>
