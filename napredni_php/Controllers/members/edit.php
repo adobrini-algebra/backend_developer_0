@@ -13,8 +13,5 @@ $sql = "SELECT * from clanovi WHERE id = :id";
 $member = $db->query($sql, ['id' => $_GET['id']])->findOrFail();
 
 $pageTitle = "Uredi Clana";
-
-$errors = Session::all('errors');
-Session::unflash();
-
+$errors = Session::get('errors');
 require base_path('views/members/edit.view.php');

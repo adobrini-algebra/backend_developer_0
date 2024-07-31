@@ -3,8 +3,5 @@
 use Core\Session;
 
 $pageTitle = 'Medij';
-
-$errors = Session::all('errors');
-Session::unflash();
-
+$errors = Session::get('errors');
 require base_path('views/formats/create.view.php');

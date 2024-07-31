@@ -14,14 +14,15 @@ class Session
         $_SESSION[$key] = $value;
     }
 
-    public static function get($key): string
+    public static function get($key): array|string
     {
-        return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? '';
-    }
+        if (isset($_SESSION['_flash'][$key])){
+            $flash = $_SESSION['_flash'][$key];
+            static::unflash($key);
+            return $flash;
+        }
 
-    public static function all($key): array
-    {
-        return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? [];
+        return $_SESSION[$key] ?? [];
     }
 
     public static function flash($key, $value): void
@@ -29,9 +30,13 @@ class Session
         $_SESSION['_flash'][$key] = $value;
     }
 
-    public static function unflash(): void
+    public static function unflash($key = null): void
     {
-        unset($_SESSION['_flash']);
+        if ($key) {
+            unset($_SESSION['_flash'][$key]);
+        } else {
+            unset($_SESSION['_flash']);
+        }
     }
 
     public static function clear(): void

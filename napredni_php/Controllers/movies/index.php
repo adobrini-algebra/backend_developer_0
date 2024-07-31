@@ -52,10 +52,7 @@ foreach ($results as $key => $movie) {
 }
 
 $members = $db->query("SELECT * from clanovi ORDER BY id")->all();
-$errors = Session::all('errors');
-$message = Session::all('message');
-Session::unflash();
 
+$errors = Session::get('errors');
 $pageTitle = 'Filmovi';
-
 require base_path('views/movies/index.view.php');

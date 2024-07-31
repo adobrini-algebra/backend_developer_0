@@ -12,8 +12,5 @@ $db = Database::get();
 $price = $db->query("SELECT * from cjenik WHERE id = :id", ['id' => $_GET['id']])->findOrFail();
 
 $pageTitle = "Uredi Cijenu";
-
-$errors = Session::all('errors');
-Session::unflash();
-
+$errors = Session::get('errors');
 require base_path('views/prices/edit.view.php');

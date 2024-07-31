@@ -3,8 +3,5 @@
 use Core\Session;
 
 $pageTitle = 'Cjenik';
-
-$errors = Session::all('errors');
-Session::unflash();
-
+$errors = Session::get('errors');
 require base_path('views/prices/create.view.php');

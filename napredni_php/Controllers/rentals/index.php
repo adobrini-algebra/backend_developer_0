@@ -1,7 +1,6 @@
 <?php
 
 use Core\Database;
-use Core\Session;
 
 $db = Database::get();
 
@@ -24,8 +23,4 @@ $sql = "SELECT p.*,
 $rentals = $db->query($sql)->all();
 
 $pageTitle = 'Posudbe';
-
-$message = Session::all('message');
-Session::unflash();
-
 require base_path('views/rentals/index.view.php');

@@ -46,10 +46,6 @@ $movies = $db->query("SELECT * from filmovi ORDER BY id")->all();
 $formats = $db->query("SELECT * from mediji ORDER BY id")->all();
 
 $pageTitle = 'Uredi Posudbu';
-
-$message = Session::all('message');
-$errors = Session::all('errors');
-Session::unflash();
-
+$errors = Session::get('errors');
 require base_path('views/rentals/edit.view.php');
 

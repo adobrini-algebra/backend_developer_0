@@ -27,10 +27,6 @@ $members = $db->query("SELECT * from clanovi ORDER BY id")->all();
 $movies  = $db->query("SELECT * from filmovi ORDER BY id")->all();
 $formats = $db->query("SELECT * from mediji ORDER BY id")->all();
 
-$errors = Session::all('errors');
-$message = Session::all('message');
-Session::unflash();
-
+$errors = Session::get('errors');
 $pageTitle = 'Dashboard';
-
 require base_path('views/dashboard/index.view.php');
