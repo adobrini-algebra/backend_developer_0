@@ -41,7 +41,7 @@ class Database {
             $this->statement->execute($params);
         } catch (\PDOException $e) {
             if($e->errorInfo[1] === 1451){
-                throw new ResourceInUseException();
+                throw new ResourceInUseException("Resource is in Use!");
             }
             //TODO: return 500 error page with appropriate message
             throw $e;

@@ -52,4 +52,6 @@ return [
     '/formats/edit'      => 'Controllers/formats/edit.php',
     '/formats/update'    => 'Controllers/formats/update.php',
     '/formats/destroy'   => 'Controllers/formats/destroy.php',
+
+    '/copies/destroy'   => 'Controllers/copies/destroy.php',
 ];
