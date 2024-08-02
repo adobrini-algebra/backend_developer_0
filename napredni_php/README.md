@@ -1,6 +1,9 @@
 ### Zadaca preko praznika
-#### 27.07.2024
 
+#### 02.08.2024
+##### Demo aplikaciju mozete pogledati na [ovom](http://algebra.kodi.hr/) linku
+
+#### 27.07.2024
 ##### Zadaci su poredani po tezini IMO. Stoga nastojte rjesavati od prvog prema posljednjem buletu.
 
 * u genres/show dodati listu filmova koji spadaju u taj zanr
