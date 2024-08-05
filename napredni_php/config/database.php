@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'host' => 'localhost',
-    'dbname' => 'videoteka',
-    'user' => 'algebra',
-    'password' => 'algebra',
+    'host' => env('DB_HOST'),
+    'dbname' => env('DB_DATABASE'),
+    'user' => env('DB_USERNAME'),
+    'password' => env('DB_PASSWORD'),
     'charset' => 'utf8mb4',
     'options' => [
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
