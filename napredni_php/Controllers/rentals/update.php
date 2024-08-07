@@ -46,7 +46,7 @@ try {
     $rentalSql = "UPDATE posudba SET datum_posudbe = :dp, datum_povrata = :dpovrat, updated_at = :updated, clan_id = :clan WHERE id = :pid";
     $db->query($rentalSql, [
         'dp' => $data['datum_posudbe'],
-        'dpovrat' => $data['datum_povrata'],
+        'dpovrat' => $data['datum_povrata'] ?? null,
         'clan' => $data['member'],
         'updated' => date("Y-m-d H:i:s"),
         'pid' => $_POST['pid']
