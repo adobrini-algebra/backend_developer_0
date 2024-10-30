@@ -140,4 +140,17 @@ class ArticleController extends Controller
 
         return view('articles.index', compact('articles', 'header'));
     }
+
+    // public function searchArticles(Request $request)
+    // {
+    //     $header = 'Search results';
+
+    //     $keyword = $request->search;
+    //     Validator::make(['search' => $keyword], ['search' => 'required|regex:/^[\pL0-9\s_-]+$/i'], ['regex' => 'The :attribute field has to be alphanumeric.'])
+    //         ->validateWithBag('search');
+
+    //     $articles = Article::with('tags')->whereAny(['title', 'body'], 'like', "%$keyword%")->paginate(12);
+
+    //     return view('articles.index', compact('header', 'articles'));
+    // }
 }
